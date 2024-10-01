@@ -1,0 +1,342 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+  height: 100%; /* Ensure html and body elements fill the viewport height */
+  overflow-x: hidden;
+}
+
+body{
+    background-image:url(../images/web2.jpeg);
+    background-repeat: no-repeat;
+    background-size: cover;
+   
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-family: 'poppins', sans-serif;
+    
+}
+
+.copyright-text{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #10717e;
+  color: rgb(247, 245, 245);
+  text-align: center;
+  padding: 0.5px 0;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.heading{
+    color: rgb(193, 202, 209);
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+.container{
+    padding: 20px 70px;
+    color: white;
+}
+
+.content {
+  text-align: center;
+  flex: 1; /* Allow content to grow and fill available space */
+  justify-content: center; /* Center content vertically */
+  flex-direction: column;
+ 
+}
+
+.current-info{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.date-container{
+    font-weight: 100;
+}
+.date-container .time{
+    font-size: 70px;
+    
+}
+
+.date-container #am-pm{
+    font-size: 30px;
+    margin-left: 20px;
+}
+
+.date-container .date{
+    font-size: 30px;
+}
+.select-text, .select, button {
+  margin-top: 20px;
+}
+.select-text{
+    color:black;
+    font-weight: bold;
+    font-size: 20px;
+}
+.select{
+    background-color: rgb(99, 122, 131);
+    color: white;
+    padding: 5px;
+    border: solid;
+    border-width:1px;width: 100%; /* Ensure select box is full width */
+    max-width: 400px; /* Limit maximum width */
+}
+.select:hover{
+    opacity: 0.8;
+    cursor: pointer;
+    border: solid;
+    border-width: 2px;
+}
+
+.select:focus {
+    border-color: #9b9b9b;
+    outline: none;
+  }
+  
+  /* Optional: Add some spacing between the label and the dropdown */
+  label {
+    margin-bottom: 5px;
+    display: block;
+  }
+  #getWeatherButton {
+    font-family: inherit;
+    font-size: 20px;
+    background: #212121;
+    color: white;
+    fill: rgb(155, 153, 153);
+    padding: 0.7em 1em;
+    padding-left: 0.9em;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    border: none;
+    border-radius: 15px;
+    font-weight: 1000;
+    position: relative;
+    margin-top: 20px;
+    outline: none; /* Remove outline */
+    flex: 1; /* Allow buttons to grow and fill available space */
+    max-width: 240px; /* Limit maximum width */
+}
+
+#getWeatherButton span {
+    display: block;
+    margin-left: 0.3em;
+    transition: all 0.3s ease-in-out;
+}
+
+#getWeatherButton svg {
+    display: block;
+    transform-origin: center center;
+    transition: transform 0.3s ease-in-out;
+}
+
+#getWeatherButton:hover {
+    background: #000;
+}
+
+#getWeatherButton:hover .svg-wrapper {
+    transform: scale(1.50);
+    transition: 0.5s linear;
+}
+
+#getWeatherButton:hover svg {
+    transform: translateX(2.9em) scale(1.1);
+    fill: #fff;
+}
+
+#getWeatherButton:hover span {
+    opacity: 0;
+    transition: 0.5s linear;
+}
+
+#getWeatherButton:active {
+    transform: scale(0.95);
+}
+
+    /* Style the weather data container */
+/* styles.css */
+.weather-container {
+  display: none;/* Hide initially */
+  justify-content: space-around; /* Adjust as needed */
+  gap: 10px;/*Space btween weather items*/
+  padding: 10px;
+  background: linear-gradient(to bottom, #e0f7fa, #80deea);
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-top: 20px; /* Adjust or remove if causing extra space */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  max-height: 80vh; /* Limit height to 80% of viewport height */
+}
+
+.weather-day {
+  text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+    padding:1px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 150px; /* Adjust as needed */
+    margin: 10px auto; /* Center items */
+}
+
+.weather-icon {
+  width: 100px;
+  height: 60px;
+  margin-bottom: 10px;
+}
+
+.weather-day h4 {
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: #000000;
+}
+
+.weather-day p {
+  font-size: 16px;
+  margin: 5px 0;
+  color: #0c7e6b;
+}
+
+.weather-day strong {
+  color: #383232;
+}
+
+.weather-day:hover {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+}
+
+.weather-condition {
+  font-size: 20px;
+  font-weight: bold;
+  color: #0a5a51;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+/* Loader text */
+.loader {
+    font-size: 18px;
+    color: #333;
+    margin: 20px 0;
+    text-align: center;
+  }
+  
+  /* Optional: Spinner loader CSS */
+  .loader {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin-top: 10px;
+    display: none; /* Initially hidden */
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  @media (max-width: 768px) {
+    .weather-day {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+  .heading {
+    font-size: 1.2em;
+  }
+
+  .select {
+    width: 100%;
+  }
+
+  #getWeatherButton, #clearButton {
+    width: 100%;
+  }
+
+  .weather-container {
+    max-height: 50vh; /* Adjust height for smaller screens */
+  }
+}
+.button-container {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Center align items vertically */
+  gap: 10px;
+  flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+}
+
+ /* From Uiverse.io by cssbuttons-io */ 
+ #clearButton {
+  width: 150px;
+  height: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 3px rgba(0,0,0,0.15);
+  background: #21759ca8;
+}
+
+#clearButton, #clearButton span {
+  transition: 200ms;
+}
+
+#clearButton .text {
+  transform: translateX(35px);
+  color: white;
+  font-weight: bold;
+}
+
+#clearButton .icon {
+  position: absolute;
+  border-left: 1px solid #c43131;
+  transform: translateX(110px);
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#clearButton svg {
+  width: 15px;
+  fill: #eee;
+}
+
+#clearButton:hover {
+  background: #21759ca8;
+}
+
+#clearButton:hover .text {
+  color: transparent;
+}
+
+#clearButton:hover .icon {
+  width: 150px;
+  border-left: none;
+  transform: translateX(0);
+}
+
+#clearButton:focus {
+  outline: none;
+}
+
+#clearButton:active .icon svg {
+  transform: scale(0.7);
+}
